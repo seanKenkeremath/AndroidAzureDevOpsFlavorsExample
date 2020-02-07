@@ -20,5 +20,5 @@ steps:
   - task: PublishBuildArtifacts@1
     inputs:
       pathToPublish: '$(build.artifactStagingDirectory)/app/build/outputs/'
-      artifactName: 'apk-files'
+      artifactName: 'apk-files-${{ parameters.app_name }}'
       artifactType: 'container'
