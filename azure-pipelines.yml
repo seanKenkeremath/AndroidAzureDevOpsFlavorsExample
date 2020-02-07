@@ -2,6 +2,7 @@
 # Build your Android project with Gradle.
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
+name: $(Date:yyyyMMdd)$(Rev:rr)
 
 trigger:
 - master
