@@ -14,7 +14,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val textView: TextView = findViewById(R.id.domain_name)
-        textView.text = BuildConfig.DOMAIN_NAME
+        val domainName: TextView = findViewById(R.id.domain_name)
+        domainName.text = BuildConfig.DOMAIN_NAME
+        val buildNum: TextView = findViewById(R.id.build_number)
+        buildNum.text = getString(R.string.build_num_format, BuildConfig.VERSION_CODE)
+
     }
 }

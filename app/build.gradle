@@ -23,27 +23,34 @@ android {
         }
     }
 
-    flavorDimensions "color", "shape"
+    flavorDimensions "color", "shape", "product"
     productFlavors {
+        A {
+            dimension "product"
+            applicationIdSuffix ".A"
+        }
+        A {
+            dimension "product"
+            applicationIdSuffix ".B"
+        }
+        A {
+            dimension "product"
+            applicationIdSuffix ".C"
+        }
         red {
             dimension "color"
-            applicationIdSuffix ".red"
         }
         green {
             dimension "color"
-            applicationIdSuffix ".green"
         }
         blue {
             dimension "color"
-            applicationIdSuffix ".blue"
         }
         square {
             dimension "shape"
-            applicationIdSuffix ".square"
         }
         circle {
             dimension "shape"
-            applicationIdSuffix ".circle"
         }
     }
 
