@@ -14,6 +14,7 @@ jobs:
       - template: build-template.yml
         parameters:
           domain_name: "www.domainA.com"
+          app_name: "app_A"
 
   - job: B
     pool:
@@ -22,6 +23,7 @@ jobs:
       - template: build-template.yml
         parameters:
           domain_name: "www.domainB.com"
+          app_name: "app_B"
 
   - job: C
     pool:
@@ -30,3 +32,4 @@ jobs:
       - template: build-template.yml
         parameters:
           domain_name: "www.domainC.com"
+          app_name: "app_C"
