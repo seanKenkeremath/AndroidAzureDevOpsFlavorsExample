@@ -12,7 +12,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode buildVersionCode()
-        versionName buildVersionName()
+        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "DOMAIN_NAME", "\"" + project.properties.domain_name + "\""
     }
@@ -69,14 +69,6 @@ Integer buildVersionCode() {
         return project.properties.versionCode.toInteger()
     } else {
         return 1
-    }
-}
-
-String buildVersionName() {
-    if (project.hasProperty('versionName')) {
-        return project.properties.versionName.toString()
-    } else {
-        return "1.0"
     }
 }
 
