@@ -6,7 +6,27 @@
 trigger:
 - master
 
-extends:
-  template: build-template.yml
-  parameters:
-    domain_name: "www.domain.com"
+jobs:
+  - job: A
+    pool:
+      vmImage: 'macos-latest'
+    steps:
+      - template: build-template.yml
+        parameters:
+          domain_name: "www.domainA.com"
+
+  - job: B
+    pool:
+      vmImage: 'macos-latest'
+    steps:
+      - template: build-template.yml
+        parameters:
+          domain_name: "www.domainA.com"
+
+  - job: C
+    pool:
+      vmImage: 'macos-latest'
+    steps:
+      - template: build-template.yml
+        parameters:
+          domain_name: "www.domainA.com"
