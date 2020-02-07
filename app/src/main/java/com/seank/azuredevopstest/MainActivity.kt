@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         domainName.text = BuildConfig.DOMAIN_NAME
         val buildNum: TextView = findViewById(R.id.build_number)
         buildNum.text = getString(R.string.build_num_format, BuildConfig.VERSION_CODE)
-
+        val versionName: TextView = findViewById(R.id.version_name)
+        versionName.text = getString(R.string.version_name_format, BuildConfig.VERSION_NAME)
     }
 }
