@@ -11,7 +11,7 @@ android {
         applicationId "com.seank.azuredevopstest"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
+        versionCode buildVersionCode()
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "DOMAIN_NAME", "\"" + project.properties.domain_name + "\""
@@ -61,6 +61,14 @@ android {
             keyAlias project.properties.keyStoreAlias
             keyPassword project.properties.keyStoreAliasPassword
         }
+    }
+}
+
+Integer buildVersionCode() {
+    if (project.hasProperty('versionCode')) {
+        return project.properties.versionCode.toInteger()
+    } else {
+        return 1
     }
 }
 
