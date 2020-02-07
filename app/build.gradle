@@ -30,11 +30,11 @@ android {
         }
         green {
             dimension "color"
-            applicationIdSuffix ".red"
+            applicationIdSuffix ".green"
         }
         blue {
             dimension "color"
-            applicationIdSuffix ".red"
+            applicationIdSuffix ".blue"
         }
         square {
             dimension "shape"
