@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Azure DevopsTest</string>
+    <string name="action_settings">Settings</string>
+    <string name="shape">No Shape</string>
+</resources>
