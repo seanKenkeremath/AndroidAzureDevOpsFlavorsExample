@@ -6,9 +6,6 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'macos-latest'
-
 extends:
   template: build-template.yml
   parameters:
