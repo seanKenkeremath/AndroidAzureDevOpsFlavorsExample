@@ -21,7 +21,7 @@ jobs:
     steps:
       - template: build-template.yml
         parameters:
-          domain_name: "www.domainA.com"
+          domain_name: "www.domainB.com"
 
   - job: C
     pool:
@@ -29,4 +29,4 @@ jobs:
     steps:
       - template: build-template.yml
         parameters:
-          domain_name: "www.domainA.com"
+          domain_name: "www.domainC.com"
