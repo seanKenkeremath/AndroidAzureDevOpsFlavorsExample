@@ -3,28 +3,24 @@ name: $(Date:yyyyMMdd)$(Rev:rr)
 trigger:
 - master
 
-
-strategy:
-  matrix:
-    A:
-      secret_variable_group: "A"
-      variable_path: "azure_vars/A_vars.yml"
-    B:
-      secret_variable_group: "B"
-      variable_path: "azure_vars/B_vars.yml"
-    C:
-      secret_variable_group: "C"
-      variable_path: "azure_vars/C_vars.yml"
-
-
-variables:
- - group: $(variable_group)
- - template: $(variable_path)
-
 jobs:
   - job: Main
     pool:
       vmImage: 'macos-latest'
+    strategy:
+      matrix:
+        A:
+          secret_variable_group: "A"
+          variable_path: "azure_vars/A_vars.yml"
+        B:
+          secret_variable_group: "B"
+          variable_path: "azure_vars/B_vars.yml"
+        C:
+          secret_variable_group: "C"
+          variable_path: "azure_vars/C_vars.yml"
+    variables:
+      - group: $(variable_group)
+      - template: $(variable_path)
     steps:
       - template: build-template.yml
         parameters:
