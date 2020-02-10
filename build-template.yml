@@ -1,5 +1,7 @@
 parameters:
   - name: app_name
+    type: string
+    default: ""
   - name: domain_name
     type: string
     default: ""

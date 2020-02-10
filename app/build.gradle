@@ -29,11 +29,11 @@ android {
             dimension "product"
             applicationIdSuffix ".A"
         }
-        A {
+        B {
             dimension "product"
             applicationIdSuffix ".B"
         }
-        A {
+        C {
             dimension "product"
             applicationIdSuffix ".C"
         }
