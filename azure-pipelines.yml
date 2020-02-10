@@ -16,6 +16,9 @@ jobs:
       - template: "azure_vars/A_vars.yml"
     steps:
       - template: build-template.yml
+      - template: run_ui_tests.yml
+        parameters:
+          task: "connectedBlueCircleADebugAndroidTest"
   - job: B
     pool:
       vmImage: 'macos-latest'

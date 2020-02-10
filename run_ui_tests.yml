@@ -1,0 +1,13 @@
+parameters:
+  task: ''
+
+steps:
+  - template: install_emulator.yml
+  - task: Gradle@2
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: '${{ parameters.task }}  -Pdomain_name=$(domain_name) -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'
