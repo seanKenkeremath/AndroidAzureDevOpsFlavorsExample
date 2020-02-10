@@ -5,6 +5,9 @@ parameters:
   - name: domain_name
     type: string
     default: ""
+  - name: app_secret
+    type: string
+    default: ""
 
 steps:
   - task: Gradle@2
