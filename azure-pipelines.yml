@@ -3,6 +3,10 @@ name: $(Date:yyyyMMdd)$(Rev:rr)
 trigger:
 - master
 
+parameters:
+  var_group_A: "A"
+
+
 jobs:
   - job: Main
     pool:
@@ -19,8 +23,8 @@ jobs:
           secret_variable_group: "C"
           variable_path: "azure_vars/C_vars.yml"
     variables:
-      - group: $(secret_variable_group)
-      - template: $(variable_path)
+      - group: "A"
+      - template: "azure_vars/A_vars.yml"
     steps:
       - template: build-template.yml
         parameters:
