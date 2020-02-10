@@ -2,16 +2,6 @@ parameters:
   - name: app_name
     type: string
     default: ""
-  - name: var_group
-    type: string
-    default: ""
-  - name: var_file
-    type: string
-    default: ""
-
-variables:
-  - group: "${{ parameters.var_group }}"
-  - template: "${{ parameters.app_secret }}"
 
 steps:
   - task: Gradle@2

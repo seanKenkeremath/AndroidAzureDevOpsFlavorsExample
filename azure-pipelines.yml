@@ -11,29 +11,31 @@ jobs:
   - job: A
     pool:
       vmImage: 'macos-latest'
+    variables:
+      - group: "A"
+      - template: "azure_vars/A_vars.yml"
     steps:
       - template: build-template.yml
         parameters:
-          var_group: "A"
-          var_file: "azure_vars/A_vars.yml"
           app_name: "app_A"
-
   - job: B
     pool:
       vmImage: 'macos-latest'
+    variables:
+      - group: "B"
+      - template: "azure_vars/B_vars.yml"
     steps:
       - template: build-template.yml
         parameters:
-          var_group: "B"
-          var_file: "azure_vars/B_vars.yml"
           app_name: "app_B"
 
   - job: C
     pool:
       vmImage: 'macos-latest'
+    variables:
+      - group: "C"
+      - template: "azure_vars/C_vars.yml"
     steps:
       - template: build-template.yml
         parameters:
-          var_group: "C"
-          var_file: "azure_vars/C_vars.yml"
           app_name: "app_C"
