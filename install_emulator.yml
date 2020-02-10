@@ -1,2 +1,5 @@
 steps:
-  - bash: install_emulator.sh
+  - task: Bash@3
+    inputs:
+    targetType: 'filePath'
+    filePath: install_emulator.sh

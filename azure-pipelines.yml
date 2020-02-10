@@ -15,10 +15,13 @@ jobs:
       - group: "A"
       - template: "azure_vars/A_vars.yml"
     steps:
+      - template: install_emulator.yml
       - template: build-template.yml
-      - template: run_ui_tests.yml
         parameters:
-          task: "connectedBlueCircleADebugAndroidTest"
+          unit_tests: false
+          gradle_task: "connectedBlueCircleADebugAndroidTest"
+      - template: build-template.yml
+      - template: publish_apks.yml
   - job: B
     pool:
       vmImage: 'macos-latest'
@@ -27,6 +30,7 @@ jobs:
       - template: "azure_vars/B_vars.yml"
     steps:
       - template: build-template.yml
+      - template: publish_apks.yml
   - job: C
     pool:
       vmImage: 'macos-latest'
@@ -35,3 +39,4 @@ jobs:
       - template: "azure_vars/C_vars.yml"
     steps:
       - template: build-template.yml
+      - template: publish_apks.yml
