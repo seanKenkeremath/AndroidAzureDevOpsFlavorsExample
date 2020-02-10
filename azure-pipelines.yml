@@ -16,8 +16,6 @@ jobs:
       - template: "azure_vars/A_vars.yml"
     steps:
       - template: build-template.yml
-        parameters:
-          app_name: "app_A"
   - job: B
     pool:
       vmImage: 'macos-latest'
@@ -26,9 +24,6 @@ jobs:
       - template: "azure_vars/B_vars.yml"
     steps:
       - template: build-template.yml
-        parameters:
-          app_name: "app_B"
-
   - job: C
     pool:
       vmImage: 'macos-latest'
@@ -37,5 +32,3 @@ jobs:
       - template: "azure_vars/C_vars.yml"
     steps:
       - template: build-template.yml
-        parameters:
-          app_name: "app_C"
