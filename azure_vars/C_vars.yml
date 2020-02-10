@@ -1,0 +1,3 @@
+variables:
+  domain_name: 'https://www.domainC.com'
+  app_name: "app C"

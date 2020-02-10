@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val domainName: TextView = findViewById(R.id.domain_name)
         domainName.text = BuildConfig.DOMAIN_NAME
+        val appSecret: TextView = findViewById(R.id.app_secret)
+        appSecret.text = getString(R.string.app_secret_format, BuildConfig.APP_SECRET)
         val buildNum: TextView = findViewById(R.id.build_number)
         buildNum.text = getString(R.string.build_num_format, BuildConfig.VERSION_CODE)
         val versionName: TextView = findViewById(R.id.version_name)

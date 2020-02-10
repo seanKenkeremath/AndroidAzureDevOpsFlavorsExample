@@ -15,6 +15,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "DOMAIN_NAME", "\"" + project.properties.domain_name + "\""
+        buildConfigField "String", "APP_SECRET", "\"" + project.properties.app_secret + "\""
     }
     buildTypes {
         release {

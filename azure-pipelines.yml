@@ -1,36 +1,33 @@
-# Android
-# Build your Android project with Gradle.
-# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/android
 name: $(Date:yyyyMMdd)$(Rev:rr)
 
 trigger:
 - master
 
+
+strategy:
+  matrix:
+    A:
+      secret_variable_group: "A"
+      variable_path: "azure_vars/A_vars.yml"
+    B:
+      secret_variable_group: "B"
+      variable_path: "azure_vars/B_vars.yml"
+    C:
+      secret_variable_group: "C"
+      variable_path: "azure_vars/C_vars.yml"
+
+
+variables:
+ - group: $(variable_group)
+ - template: $(variable_path)
+
 jobs:
-  - job: A
+  - job: Main
     pool:
       vmImage: 'macos-latest'
     steps:
       - template: build-template.yml
         parameters:
-          domain_name: "www.domainA.com"
-          app_name: "app_A"
-
-  - job: B
-    pool:
-      vmImage: 'macos-latest'
-    steps:
-      - template: build-template.yml
-        parameters:
-          domain_name: "www.domainB.com"
-          app_name: "app_B"
-
-  - job: C
-    pool:
-      vmImage: 'macos-latest'
-    steps:
-      - template: build-template.yml
-        parameters:
-          domain_name: "www.domainC.com"
-          app_name: "app_C"
+          domain_name: $(domain_name)
+          app_name: $(app_name)
+          app_secret: $(app_secret)
