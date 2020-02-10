@@ -19,7 +19,7 @@ jobs:
           secret_variable_group: "C"
           variable_path: "azure_vars/C_vars.yml"
     variables:
-      - group: $(variable_group)
+      - group: $(secret_variable_group)
       - template: $(variable_path)
     steps:
       - template: build-template.yml
