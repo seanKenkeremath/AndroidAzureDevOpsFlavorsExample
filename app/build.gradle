@@ -24,7 +24,7 @@ android {
         }
     }
 
-    flavorDimensions "color", "shape", "product"
+    flavorDimensions "color", "environment", "product"
     productFlavors {
         A {
             dimension "product"
@@ -47,11 +47,11 @@ android {
         blue {
             dimension "color"
         }
-        square {
-            dimension "shape"
+        production {
+            dimension "environment"
         }
-        circle {
-            dimension "shape"
+        staging {
+            dimension "environment"
         }
     }
 
