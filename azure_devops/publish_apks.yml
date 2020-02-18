@@ -6,7 +6,7 @@ parameters:
 steps:
   - task: AndroidSigning@3
     inputs:
-      apkFiles: '**/*.apk'
+      apkFiles: '**/*release*.apk'
       apksign: ${{ parameters.sign_apks }}
       apksignerKeystoreFile: 'keystore.keystore'
       apksignerKeystorePassword: $(keystore_password)
