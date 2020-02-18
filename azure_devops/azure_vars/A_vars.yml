@@ -1,3 +1,4 @@
 variables:
   active_colors: 'red,green'
+  active_environments: 'staging'
   active_products: 'productA'
