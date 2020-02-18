@@ -1,3 +1,2 @@
 variables:
-  domain_name: 'https://www.domainA.com'
-  app_name: "app A"
+  flavor: 'ProductA'

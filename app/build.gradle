@@ -14,7 +14,6 @@ android {
         versionCode buildVersionCode()
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "DOMAIN_NAME", "\"" + project.properties.domain_name + "\""
         buildConfigField "String", "APP_SECRET", "\"" + project.properties.app_secret + "\""
     }
     buildTypes {
@@ -26,17 +25,20 @@ android {
 
     flavorDimensions "color", "environment", "product"
     productFlavors {
-        A {
+        productA {
             dimension "product"
             applicationIdSuffix ".A"
+            buildConfigField "String", "DOMAIN_NAME", "\"https://www.domainA.com\""
         }
-        B {
+        productB {
             dimension "product"
             applicationIdSuffix ".B"
+            buildConfigField "String", "DOMAIN_NAME", "\"https://www.domainB.com\""
         }
-        C {
+        productC {
             dimension "product"
             applicationIdSuffix ".C"
+            buildConfigField "String", "DOMAIN_NAME", "\"https://www.domainC.com\""
         }
         red {
             dimension "color"
@@ -49,9 +51,11 @@ android {
         }
         production {
             dimension "environment"
+            buildConfigField "String", "API_PATH_SUFFIX", "\"prod\""
         }
         staging {
             dimension "environment"
+            buildConfigField "String", "API_PATH_SUFFIX", "\"staging\""
         }
     }
 

@@ -1,7 +1,7 @@
 parameters:
   - name: gradle_task
     type: string
-    default: "check assembleDebug"
+    default: "check assemble$(flavor)Debug"
   - name: unit_tests
     type: boolean
     default: false
@@ -14,4 +14,4 @@ steps:
       gradleOptions: '-Xmx3072m'
       publishJUnitResults: ${{ parameters.unit_tests }}
       testResultsFiles: '**/TEST-*.xml'
-      tasks: '${{ parameters.gradle_task }} -Pdomain_name=$(domain_name) -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'
+      tasks: '${{ parameters.gradle_task }} -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'

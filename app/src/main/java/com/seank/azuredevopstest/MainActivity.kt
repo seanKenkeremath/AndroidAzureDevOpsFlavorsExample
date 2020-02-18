@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val domainName: TextView = findViewById(R.id.domain_name)
-        domainName.text = BuildConfig.DOMAIN_NAME
+        domainName.text = "${BuildConfig.DOMAIN_NAME}/${BuildConfig.API_PATH_SUFFIX}"
         val appSecret: TextView = findViewById(R.id.app_secret)
         appSecret.text = getString(R.string.app_secret_format, BuildConfig.APP_SECRET)
         val buildNum: TextView = findViewById(R.id.build_number)

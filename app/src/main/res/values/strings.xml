@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Azure DevopsTest</string>
     <string name="action_settings">Settings</string>
     <string name="app_secret_format">App Secret: %s</string>
     <string name="build_num_format">Build #: %d</string>
