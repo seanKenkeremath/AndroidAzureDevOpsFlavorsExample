@@ -6,5 +6,5 @@ steps:
   - task: PublishBuildArtifacts@1
     inputs:
       pathToPublish: '$(build.artifactStagingDirectory)/app/build/outputs/'
-      artifactName: 'apk-files-$(app_name)'
+      artifactName: 'apk-files-$(apk_suffix)'
       artifactType: 'container'

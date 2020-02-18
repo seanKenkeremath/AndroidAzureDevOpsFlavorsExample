@@ -1,4 +1,5 @@
 variables:
+  apk_suffix: 'B'
   active_colors: 'blue,red'
   active_environments: 'production'
   active_products: 'productB'
