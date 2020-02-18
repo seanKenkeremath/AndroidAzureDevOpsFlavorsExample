@@ -19,6 +19,12 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.seank.azuredevopstest.${BuildConfig.FLAVOR_product}", appContext.packageName)
+        val expectedName = when (BuildConfig.FLAVOR_product) {
+            "productA" -> "com.seank.azuredevopstest.A"
+            "productB" -> "com.seank.azuredevopstest.B"
+            "productC" -> "com.seank.azuredevopstest.C"
+            else -> null
+        }
+        assertEquals(expectedName, appContext.packageName)
     }
 }
