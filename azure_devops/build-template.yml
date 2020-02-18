@@ -14,4 +14,4 @@ steps:
       gradleOptions: '-Xmx3072m'
       publishJUnitResults: ${{ parameters.unit_tests }}
       testResultsFiles: '**/TEST-*.xml'
-      tasks: '${{ parameters.gradle_task }} -PactiveColors=$(active_colors) -PactiveEnvironments=$(active_environments) -PactiveProducts=$(active_product) -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'
+      tasks: '${{ parameters.gradle_task }} -PactiveColors=$(active_colors) -PactiveEnvironments=$(active_environments) -PactiveProducts=$(active_products) -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'
