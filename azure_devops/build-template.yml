@@ -1,7 +1,7 @@
 parameters:
   - name: gradle_task
     type: string
-    default: "check assemble$(flavor)Debug"
+    default: "check assemble$(flavor)"
   - name: unit_tests
     type: boolean
     default: false
