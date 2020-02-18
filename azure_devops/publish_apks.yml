@@ -1,4 +1,18 @@
+parameters:
+  - name: sign_apks
+    type: boolean
+    default: true
+
 steps:
+  - task: AndroidSigning@3
+    inputs:
+      apkFiles: '**/*.apk'
+      apksign: ${{ parameters.sign_apks }}
+      apksignerKeystoreFile: 'keystore.keystore'
+      apksignerKeystorePassword: $(keystore_password)
+      apksignerKeystoreAlias: $(keystore_alias)
+      apksignerKeyPassword: $(keystore_alias_password)
+      zipalign: true
   - task: CopyFiles@2
     inputs:
       contents: '**/*.apk'
