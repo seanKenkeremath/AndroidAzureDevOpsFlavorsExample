@@ -67,6 +67,58 @@ android {
             keyPassword project.properties.keyStoreAliasPassword
         }
     }
+
+    variantFilter { variant ->
+        def color = variant.flavors[0]
+        def env = variant.flavors[1]
+        def product = variant.flavors[2]
+
+        def activeColors = getActiveColors()
+        if (activeColors != null && !activeColors.contains(color.name)) {
+            setIgnore(true)
+            return
+        }
+
+        def activeEnvironments = getActiveEnvironments()
+        if (activeEnvironments != null && !activeEnvironments.contains(env.name)) {
+            setIgnore(true)
+            return
+        }
+
+        def activeProducts = getActiveProducts()
+        if (activeProducts != null && !activeProducts.contains(product.name)) {
+            setIgnore(true)
+            return
+        }
+
+        // only allow release builds when targeting production environment
+        if (variant.buildType.name == "release" && env.name != "production") {
+            setIgnore(true)
+            return
+        }
+    }
+}
+
+
+String[] getActiveColors() {
+    if (project.hasProperty('activeColors')) {
+        return project.properties.activeColors.split(",")
+    }
+    return null
+}
+
+String[] getActiveEnvironments() {
+    if (project.hasProperty('activeEnvironments')) {
+        return project.properties.activeEnvironments.split(",")
+    }
+    return null
+}
+
+String[] getActiveProducts() {
+    if (project.hasProperty('activeProducts')) {
+        return project.properties.activeProducts.split(",")
+    }
+    return null
 }
 
 Integer buildVersionCode() {

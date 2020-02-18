@@ -19,7 +19,7 @@ jobs:
       - template: build-template.yml
         parameters:
           unit_tests: false
-          gradle_task: "connectedBlueStagingProductADebugAndroidTest"
+          gradle_task: "connectedRedStagingProductADebugAndroidTest"
       - template: build-template.yml
       - template: publish_apks.yml
   - job: B

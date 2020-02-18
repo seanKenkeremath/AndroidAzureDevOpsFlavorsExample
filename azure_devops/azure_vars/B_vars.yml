@@ -1,2 +1,4 @@
 variables:
-  flavor: 'ProductB'
+  active_colors: 'blue,red'
+  active_environments: 'production'
+  active_products: 'productB'
