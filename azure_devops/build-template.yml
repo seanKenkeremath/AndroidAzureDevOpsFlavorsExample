@@ -1,7 +1,7 @@
 parameters:
   - name: gradle_task
     type: string
-    default: "check assembleRelease"
+    default: "check assemble"
   - name: unit_tests
     type: boolean
     default: false
@@ -20,7 +20,7 @@ steps:
       tasks: '${{ parameters.gradle_task }} -PactiveColors=$(active_colors) -PactiveEnvironments=$(active_environments) -PactiveProducts=$(active_products) -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'
   - task: AndroidSigning@3
     inputs:
-      apkFiles: '**/*.apk'
+      apkFiles: '**/*release*.apk'
       apksign: ${{ parameters.sign_apks }}
       apksignerKeystoreFile: 'keystore.keystore'
       apksignerKeystorePassword: $(keystore_password)

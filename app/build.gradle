@@ -88,6 +88,21 @@ android {
             return
         }
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = variant.productFlavors[2].name
+            outputFileName += "-" + variant.productFlavors[0].name
+            outputFileName += "-" + variant.productFlavors[1].name
+            outputFileName += "-v" + android.defaultConfig.versionName
+            outputFileName += "-" + android.defaultConfig.versionCode
+            if (variant.buildType.name == "release") {
+                outputFileName += "-release.apk";
+            } else {
+                outputFileName += "-debug.apk";
+            }
+        }
+    }
 }
 
 
