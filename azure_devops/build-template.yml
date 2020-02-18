@@ -1,7 +1,7 @@
 parameters:
   - name: gradle_task
     type: string
-    default: "check assemble"
+    default: "check assembleRelease"
   - name: unit_tests
     type: boolean
     default: false
