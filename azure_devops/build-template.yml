@@ -5,6 +5,9 @@ parameters:
   - name: unit_tests
     type: boolean
     default: false
+  - name: sign_apks
+    type: boolean
+    default: true
 
 steps:
   - task: Gradle@2
@@ -15,3 +18,11 @@ steps:
       publishJUnitResults: ${{ parameters.unit_tests }}
       testResultsFiles: '**/TEST-*.xml'
       tasks: '${{ parameters.gradle_task }} -PactiveColors=$(active_colors) -PactiveEnvironments=$(active_environments) -PactiveProducts=$(active_products) -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'
+  - task: AndroidSigning@3
+    inputs:
+      apkFiles: '**/*.apk'
+      apksign: ${{ parameters.sign_apks }}
+      apksignerKeystoreFile: 'keystore.keystore'
+      apksignerKeystorePassword: $(keystore_password)
+      apksignerKeystoreAlias: $(keystore_alias)
+      apksignerKeyPassword: $(keystore_alias_password)
