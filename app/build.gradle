@@ -59,15 +59,6 @@ android {
         }
     }
 
-    signingConfigs {
-        release {
-            storeFile rootProject.file('keystores/' + project.properties.keyStore)
-            storePassword project.properties.keyStorePassword
-            keyAlias project.properties.keyStoreAlias
-            keyPassword project.properties.keyStoreAliasPassword
-        }
-    }
-
     variantFilter { variant ->
         def color = variant.flavors[0]
         def env = variant.flavors[1]
