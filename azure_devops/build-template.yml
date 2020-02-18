@@ -20,7 +20,7 @@ steps:
       tasks: '${{ parameters.gradle_task }} -PactiveColors=$(active_colors) -PactiveEnvironments=$(active_environments) -PactiveProducts=$(active_products) -Papp_secret=$(app_secret) -PversionCode=$(Build.BuildNumber)'
   - task: AndroidSigning@3
     inputs:
-      apkFiles: '**/*release*.apk'
+      apkFiles: '**/*.apk'
       apksign: ${{ parameters.sign_apks }}
       apksignerKeystoreFile: 'keystore.keystore'
       apksignerKeystorePassword: $(keystore_password)
