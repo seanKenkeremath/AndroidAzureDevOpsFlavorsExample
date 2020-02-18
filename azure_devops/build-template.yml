@@ -26,4 +26,4 @@ steps:
       apksignerKeystorePassword: $(keystore_password)
       apksignerKeystoreAlias: $(keystore_alias)
       apksignerKeyPassword: $(keystore_alias_password)
-      zipalign: true
+      zipalign: ${{ parameters.sign_apks }}
