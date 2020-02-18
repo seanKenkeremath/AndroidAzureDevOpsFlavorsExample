@@ -81,12 +81,6 @@ android {
             setIgnore(true)
             return
         }
-
-        // only allow release builds when targeting production environment
-        if (variant.buildType.name == "release" && env.name != "production") {
-            setIgnore(true)
-            return
-        }
     }
 
     android.applicationVariants.all { variant ->
