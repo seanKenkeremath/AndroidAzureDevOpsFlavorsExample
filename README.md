@@ -1,5 +1,5 @@
 
-This project is a simple example of how to implement parallel jobs in azure to support an arbitrary number of gradle flavors and build variants of an Android app. It also shows how we would flavorize both sensitive and non-sensitive variant specific properties.
+This project is a simple example of how to implement parallel jobs in Azure Devops to support an arbitrary number of Gradle flavors and build variants of an Android app. It also shows how we would flavorize both sensitive and non-sensitive variant-specific properties.
 
 # Pipeline Setup
 
@@ -9,13 +9,13 @@ To run a pipeline on your own personal Dev Ops instance, you will need to own th
 
 ## Create a new Pipeline in Dev Ops to run the project
 
-In Azure Devops, go to Pipelines -> New Pipeline -> Select your VCS -> select the repo -> Existing Azure Pipelines YAML file -> Branch = master branch, Path = /azure-pipelines.yml -> Continue -> Run
+In Azure Devops, go to Pipelines -> New Pipeline -> Select your VCS -> select the repo -> Existing Azure Pipelines YAML file -> Branch = `master` branch, Path = `azure_devops/azure-pipelines.yml` -> Continue -> Run
 
 The pipeline should fail. This is because our pipeline needs a bit of configuring on the web side which we will cover soon.
 
 # Gradle flavor dimensions
 
-This guide assumes you understand the basics of Gradle flavor dimensions, especially how they pertain to Android builds. Some documentation around this can be found here https://developer.android.com/studio/build/build-variants
+This guide assumes you understand the basics of Gradle flavor dimensions and how they pertain to Android builds. Some documentation around this can be found here https://developer.android.com/studio/build/build-variants
 
 ## Our flavor dimensions
 
@@ -72,7 +72,7 @@ The variables we define here tell us which flavor combinations we want built for
 
 ## Secret Variables
 
-None of the product-specific variables we have defined in YAML files contain sensitive information because these files are committed to the repo. However, inevitably sensitive things like credentials, api keys, etc will be needed at build time. These can be configured in the Azure Devops web interface and referenced in our pipeline just like any other variable. This is how we are injecting our `app_secret` Gradle build config field and also handling our keystore signing in the `publish_apks.yml` file.
+None of the product-specific variables we have defined in YAML files contain sensitive information because these files are committed to the repo. However, inevitably sensitive things like credentials, API keys, etc will be needed at build time. These can be configured in the Azure Devops web interface and referenced in our pipeline just like any other variable. For instance, this is how we are injecting our `app_secret` Gradle build config field and also handling our keystore signing in the `publish_apks.yml` file.
 
 Variables can be configured in Devops by editing the pipeline and clicking the "Variables" button. This will apply that variable to any job that is run. For secret variables that must differ per product, we can create secret variable groups.
 
@@ -80,7 +80,7 @@ More information about variables can be found here https://docs.microsoft.com/en
 
 ## Secret Variable Groups
 
-To create a Variable Group in Devops, click the "Library" tab in the main navigation and under the "Variable groups" tab click the button to add a new variable group. Each variable group can be given a name, and if that group name is referenced in a pipeline using "group", all variables in that group will be applied.
+To create a variable group in Devops, click the "Library" tab in the main navigation and under the "Variable Groups" tab click the button to add a new variable group. Each variable group can be given a name, and if that group name is referenced in a pipeline using `group`, all variables in that group will be applied.
 
 You can see how our job "B" is expecting a corresponding variable group "B":
 
@@ -154,10 +154,9 @@ We can run our UI tests the same way we run any other build using `build-templat
           gradle_task: "connectedRedStagingProductADebugAndroidTest"
       - template: build-template.yml
       - template: publish_apks.yml
-
 ```
 
-In addition to overriding the gradle task, we are also disabling unit tests via a custom boolean parameter. We are already running our unit tests as part of the default `check assemble` task in the normal build step, so we do not need to run them for the UI test build as well.
+In addition to overriding the Gradle task, we are also disabling unit tests via a custom boolean parameter. We are already running our unit tests as part of the default `check assemble` task in the normal build step, so we do not need to run them for the UI test build as well.
 
 The only additional set up is that an emulator must be available for the tests to run. Azure provides a recommended shell script to do this. We are invoking the shell script in the `install_emulator.yml` template.
 
@@ -165,4 +164,4 @@ More information about this script and running UI tests on Azure Devops can be f
 
 # Overriding the build number
 
-Our project is set up to inject the Version Code as a gradle property and build time by referencing the Azure Devops build number. By default, the build number is in the format `$(Date:yyyyMMdd).$(Rev:rr)` where `Rev` is build number on that particular day. This can be overridden to be an integer that we can use for our Version Code by doing `name: $(Date:yyyyMMdd)$(Rev:rr)` at the top of our pipeline which simply removes the dot.
+Our project is set up to inject the Version Code as a Gradle property and build time by referencing the Azure Devops build number. By default, the build number is in the format `$(Date:yyyyMMdd).$(Rev:rr)` where `Rev` is build number on that particular day. This can be overridden to be an integer that we can use for our Version Code by doing `name: $(Date:yyyyMMdd)$(Rev:rr)` at the top of our pipeline which simply removes the dot.
