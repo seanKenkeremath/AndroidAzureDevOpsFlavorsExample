@@ -15,7 +15,7 @@ The pipeline should fail. This is because our pipeline needs a bit of configurin
 
 # Gradle flavor dimensions
 
-This guide assumes you understand the basics of Gradle flavor dimensions and how they pertain to Android builds. Some documentation around this can be found here https://developer.android.com/studio/build/build-variants
+This guide assumes you understand the basics of Gradle flavor dimensions and how they pertain to Android builds. Some documentation around this can be found [here](https://developer.android.com/studio/build/build-variants)
 
 ## Our flavor dimensions
 
@@ -37,7 +37,7 @@ We can get around some of these limitations using the `variantFilter` block in G
 
 `/.gradlew assemble -PactiveEnvironments=staging,production -PactiveProducts=productA -PactiveColors=blue,green`
 
-will build the release/debug variants for Product A with every combination fo staging/production and blue/green.
+will build the release/debug variants for Product A with every combination of staging/production and blue/green.
 
 # The Azure Devops pipeline
 
@@ -76,7 +76,9 @@ None of the product-specific variables we have defined in YAML files contain sen
 
 Variables can be configured in Devops by editing the pipeline and clicking the "Variables" button. This will apply that variable to any job that is run. For secret variables that must differ per product, we can create secret variable groups.
 
-More information about variables can be found here https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch
+![Adding secret variables](readme_imgs/pipeline_variables.png)
+
+More information about variables can be found [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch)
 
 ## Secret Variable Groups
 
@@ -104,7 +106,7 @@ At the bottom, make sure the "Allow access to all pipelines" box is toggled on a
 
 ![Creating multiple variable groups](readme_imgs/all_variable_groups.png)
 
-More information about variable groups can be found here https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml
+More information about variable groups can be found [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml)
 
 ## Signing Credentials
 
@@ -125,9 +127,12 @@ For simplicity's sake we will sign all of our products with the same keystore cr
       apksignerKeyPassword: $(keystore_alias_password)
       zipalign: true
 ```
+
+See [the Secret Variables section](#secret-variables) for more information about defining these variables.
+
 Note that if we wanted to use different aliases per product we could define this in our variable groups instead of in the global variables. If we wanted to use an entirely different keystore per product we could turn the keystore filename into a variable, upload multiple keystores with different names and then define the keystore name in our variable group.
 
-More information about the signing task can be found here https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/android-signing?view=azure-devops
+More information about the signing task can be found [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/android-signing?view=azure-devops)
 
 # Gradle task/unit tests
 
@@ -164,4 +169,8 @@ More information about this script and running UI tests on Azure Devops can be f
 
 # Overriding the build number
 
-Our project is set up to inject the Version Code as a Gradle property and build time by referencing the Azure Devops build number. By default, the build number is in the format `$(Date:yyyyMMdd).$(Rev:rr)` where `Rev` is build number on that particular day. This can be overridden to be an integer that we can use for our Version Code by doing `name: $(Date:yyyyMMdd)$(Rev:rr)` at the top of our pipeline which simply removes the dot.
+Our project is set up to inject the Version Code as a Gradle property and build time by referencing the Azure Devops build number. By default, the build number is in the format `$(Date:yyyyMMdd).$(Rev:rr)` where `Rev` is build number on that particular day. This can be overridden to be an integer that we can use for our Version Code by doing `name: $(Date:yyyyMMdd)$(Rev:rr)` at the top of our `azure-pipelines.yml` which simply removes the dot.
+
+This build number is one of the predefined variables and can be referenced using `$(Build.BuildNumber)` like we are doing in the `build-templates.yml` file.
+
+More information about predefined variables can be found [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml)
