@@ -165,7 +165,7 @@ In addition to overriding the Gradle task, we are also disabling unit tests via 
 
 The only additional set up is that an emulator must be available for the tests to run. Azure provides a recommended shell script to do this. We are invoking the shell script in the `install_emulator.yml` template.
 
-More information about this script and running UI tests on Azure Devops can be found here: https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/android?view=azure-devops
+More information about this script and running UI tests on Azure Devops can be found [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/android?view=azure-devops)
 
 # Overriding the build number
 
